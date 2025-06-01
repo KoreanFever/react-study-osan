@@ -27,10 +27,14 @@ function Card(props) {
         // isWorking == true -> 출근 상태
 
         const currentHour = new Date();
-        setIsWorking(prevIsWorking => !prevIsWorking);
+        setIsWorking(prevIsWorking => {
+            !prevIsWorking
+            memberInfo.isWorking = !prevIsWorking;
+            return !prevIsWorking;
+        });
 
         localStorage.setItem(id, currentHour)
-        memberInfo.isWorking = isWorking
+        
         memberInfo.recoredAt = currentHour
         updateMemberInfo(memberInfo)
 

@@ -51,7 +51,7 @@ function App() {
           (memberInfoList.map(memberInfo => {
             return <List memberInfo={memberInfo} key={memberInfo.id}></List>
           }))
-         : <></>
+         : '버튼을 눌러 메뉴를 선택해주세요'
       }
     </div>
   )
