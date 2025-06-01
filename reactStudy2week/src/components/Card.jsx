@@ -25,21 +25,7 @@ function Card(props) {
     useEffect(() => {
         const checkedHour = localStorage.getItem(memberInfo.id);
         if (checkedHour) {
-            const startWorkHour = new Date(checkedHour);
             // 출근 상태 초기화
-            if (startWorkHour.getHours() < 9 || (startWorkHour.getHours() === 9 && startWorkHour.getMinutes() === 0)) {
-                memberInfo.isWorking = true; // 출근 상태
-                memberInfo.isLate = false; // 지각 아님
-            } else {
-                memberInfo.isWorking = false; // 퇴근 상태
-                memberInfo.isLate = true; // 지각
-            }
-            setIsWorking(memberInfo.isWorking);
-            setIsLate(memberInfo.isLate);
-        } else {
-            // 출근 상태 초기화
-            memberInfo.isWorking = false; // 퇴근 상태
-            memberInfo.isLate = false; // 지각 아님
             setIsWorking(memberInfo.isWorking);
             setIsLate(memberInfo.isLate);
         }

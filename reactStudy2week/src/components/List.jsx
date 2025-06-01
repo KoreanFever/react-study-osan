@@ -3,11 +3,18 @@ import React, { useState } from "react";
 
 function List(props) {
     const memberInfo = props.memberInfo;
-    console.log(memberInfo.name, ' : ', memberInfo.isWorking);
+    let backgroundColor = "";
+
+    if (memberInfo.isWorking) {
+        backgroundColor = "bg-green-200";
+    }
+    if (!memberInfo.isWorking) {
+        backgroundColor = "bg-red-200";
+    }
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <div className="w-96 h-24 bg-white shadow-md rounded-lg p-4 mb-4">
+            <div className={backgroundColor +" w-96 h-24 shadow-md rounded-lg p-4 mb-4"}>
                 <h2 className="text-xl font-bold">{memberInfo.name}</h2>
                 {/* <p className="text-gray-600">부서: {memberInfo.department}</p>
                 <p className="text-gray-600">입사일: {memberInfo.joinDate}</p>
