@@ -10,25 +10,32 @@ function App() {
       id: 1,
       name: "박상길",
       department: "인사팀",
-      joinDate: "2022-04-19"
+      joinDate: "2022-04-19",
+      isWorking: false,
+      isLate: false,
     },
     {
       id: 2,
       name: "정진호",
       department: "기획팀",
-      joinDate: "2012-02-20"
+      joinDate: "2012-02-20",
+      isWorking: false,
+      isLate: false,
     },
     {
       id:3,
       name: "연민수",
       department: "해외영업팀",
-      joinDate: "2010-01-11"
+      joinDate: "2010-01-11",
+      isWorking: false,
+      isLate: false,
     }
   ])
 
   const updateMemberInfo = (memberInfo) => {
     memberInfoList.forEach(info => {
       if (info.id === memberInfo.id) {
+        console.log('info', info)
         info = memberInfo
       }
     })

@@ -21,33 +21,53 @@ function Card(props) {
     if (memberInfo.department === "해외영업팀") {
         memberInfo.backgroundColor = "bg-red-200"
     }
+    // 컴포넌트가 처음 렌더링될 때 출근 상태와 지각 여부를 초기화
+    useEffect(() => {
+        const checkedHour = localStorage.getItem(memberInfo.id);
+        if (checkedHour) {
+            const startWorkHour = new Date(checkedHour);
+            // 출근 상태 초기화
+            if (startWorkHour.getHours() < 9 || (startWorkHour.getHours() === 9 && startWorkHour.getMinutes() === 0)) {
+                memberInfo.isWorking = true; // 출근 상태
+                memberInfo.isLate = false; // 지각 아님
+            } else {
+                memberInfo.isWorking = false; // 퇴근 상태
+                memberInfo.isLate = true; // 지각
+            }
+            setIsWorking(memberInfo.isWorking);
+            setIsLate(memberInfo.isLate);
+        } else {
+            // 출근 상태 초기화
+            memberInfo.isWorking = false; // 퇴근 상태
+            memberInfo.isLate = false; // 지각 아님
+            setIsWorking(memberInfo.isWorking);
+            setIsLate(memberInfo.isLate);
+        }
+    }, []);
     // 출퇴근 상태 변경
     function changeWorkingState(id) {
         // isWorking == false -> 퇴근 상태
         // isWorking == true -> 출근 상태
 
         const currentHour = new Date();
-        setIsWorking(prevIsWorking => {
-            !prevIsWorking
-            memberInfo.isWorking = !prevIsWorking;
-            return !prevIsWorking;
-        });
-
-        localStorage.setItem(id, currentHour)
-        
+        memberInfo.isWorking = !memberInfo.isWorking;
         memberInfo.recoredAt = currentHour
-        updateMemberInfo(memberInfo)
+        localStorage.setItem(id, currentHour)
 
         // 9시 이후 출근 시 지각 표시
-        if (!isWorking && currentHour.getHours() >= 9 && currentHour.getMinutes() >= 0) {
-            setIsLate(true);
+        if (!memberInfo.isWorking && currentHour.getHours() >= 9 && currentHour.getMinutes() >= 0) {
+            memberInfo.isLate = true;
         }
 
-        if (isWorking) {
-            setIsLate(false)
+        if (memberInfo.isWorking) {
+            memberInfo.isLate = false;
         }
+        updateMemberInfo(memberInfo)
+        setIsWorking(memberInfo.isWorking);
+        setIsLate(memberInfo.isLate);
+
     }
-    // 출퇴근 시간 localStorage 저장
+    // 출퇴근 시간 포맷팅
     function getCheckedHour(id) {
         const checkedHour = new Date(localStorage.getItem(id))
         return  checkedHour.getFullYear() + 
