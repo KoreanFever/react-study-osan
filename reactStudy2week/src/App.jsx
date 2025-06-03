@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
 import List from './components/List'
+import WeatherBoaard from './components/WeatherBoard'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('')
@@ -42,10 +43,14 @@ function App() {
     setMemberInfoList(memberInfoList)
   }
 
+  
+ 
+
   return (
     <div>
       <button onClick={() => setCurrentPage('Card')}>출결관리</button>
       <button onClick={() => setCurrentPage('List')}>대시보드</button>
+      
       {
         currentPage === 'Card' ? 
           (memberInfoList.map(memberInfo => {
@@ -55,9 +60,14 @@ function App() {
                   </Card>
           })) 
         : currentPage === 'List' ? 
-          (memberInfoList.map(memberInfo => {
-            return <List memberInfo={memberInfo} key={memberInfo.id}></List>
-          }))
+          
+          ( <><WeatherBoaard></WeatherBoaard> 
+            {memberInfoList.map(memberInfo => {
+            return <List memberInfo={memberInfo} 
+                          key={memberInfo.id}>                            
+                          </List>
+            }) }
+          </>) 
          : '버튼을 눌러 메뉴를 선택해주세요'
       }
     </div>
