@@ -50,6 +50,7 @@ function App() {
     <div>
       <button onClick={() => setCurrentPage('Card')}>출결관리</button>
       <button onClick={() => setCurrentPage('List')}>대시보드</button>
+      <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
       
       {
         currentPage === 'Card' ? 
