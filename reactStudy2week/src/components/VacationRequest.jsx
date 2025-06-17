@@ -10,14 +10,30 @@ function VacationRequest(props) {
         vacationTimeType:'',
         vacationRangeType: '',
         vacationDate: '',
-        vacationUserId: -1 
+        vacationMemberId: -1 
     }
+    const vacationTimeType = [
+        {name: '오전', value: 'am'},
+        {name: '오후', value: 'pm'}
+    ]
+    const vacationRangeType = [
+        {name: '반반차', value: 'quarter'}, 
+        {name: '반차', value: 'half'}, 
+        {name: '연차', value: 'full'}
+    ]
     const [params, setParams] = useState(initParams) 
+    const [isSelectableVacationTime, setIsSelectableVacationTime] = useState(false)
 
     const changeVacationRangeType = (e) => {
         const type = e.target.value
+        if (type === 'full') {
+            setIsSelectableVacationTime(false)
+            setParams({...params, vacationTimeType: ''})
+        } else {
+            setIsSelectableVacationTime(true)
+        }
         setParams({...params, vacationRangeType: type})
-
+        console.log(params)
     }
     const changeVacationTimeType = (e) => {
         const type = e.target.value
@@ -25,14 +41,48 @@ function VacationRequest(props) {
     }
 
     return (
-        <div className="">
-            <input 
-                type="checkbox" 
-                value="quarter"
-                onChange={changeVacationRangeType}
-            >반반차</input>
-            <input type="checkbox" value="half">반차</input>
-            <input type="checkbox" value="full">연차차</input>
-        </div> 
+        <div className="object-center pt-7">
+            <table>
+                <tr>
+                    <th scope="row" className="border border-gray-300">시간</th>
+                    <td className="border border-gray-300">
+                        {vacationTimeType.map((vacationTime, idx) => {
+                            return (
+                                <div className="float-start" key={'vacationTimeType' + idx}>
+                                    <input 
+                                        type="radio" 
+                                        name="vacationTimeType"
+                                        value={vacationTime.value}
+                                        onClick={changeVacationTimeType}
+                                        disabled={isSelectableVacationTime}
+                                    />
+                                    <label htmlFor={vacationTime.name}>{vacationTime.name}</label>
+                                </div>
+                                )
+                        })} 
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" className="border border-gray-300">구분</th>
+                    <td className="border border-gray-300">
+                        {vacationRangeType.map((vacationRange, idx) => {
+                            return (
+                                <div className="float-start" key={'vacationRangeType' + idx}>
+                                    <input 
+                                        type="radio" 
+                                        name="vacationRangeType"
+                                        value={vacationRange.value}
+                                        onClick={changeVacationRangeType}
+                                    />
+                                    <label htmlFor={vacationRange.name}>{vacationRange.name}</label>
+                                </div>
+                                )
+                            })}
+                    </td>
+                </tr>
+            </table>
+        </div>
     )
 }
+
+export default VacationRequest;
