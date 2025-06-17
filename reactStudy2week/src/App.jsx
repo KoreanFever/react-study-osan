@@ -3,6 +3,7 @@ import './App.css'
 import Card from './components/Card'
 import List from './components/List'
 import WeatherBoaard from './components/WeatherBoard'
+import VacationRequest from './components/VacationRequest'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('')
@@ -32,6 +33,7 @@ function App() {
       isLate: false,
     }
   ])
+  const [memberVacationInfo, setMemberVacationInfo] = useState({})
 
   const updateMemberInfo = (memberInfo) => {
     memberInfoList.forEach(info => {
@@ -48,29 +50,35 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => setCurrentPage('Card')}>출결관리</button>
-      <button onClick={() => setCurrentPage('List')}>대시보드</button>
-      <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
-      
-      {
-        currentPage === 'Card' ? 
-          (memberInfoList.map(memberInfo => {
-            return <Card memberInfo={memberInfo} 
-                        updateMemberInfo={updateMemberInfo} 
-                        key={memberInfo.id}>
-                  </Card>
-          })) 
-        : currentPage === 'List' ? 
-          
-          ( <><WeatherBoaard></WeatherBoaard> 
-            {memberInfoList.map(memberInfo => {
-            return <List memberInfo={memberInfo} 
-                          key={memberInfo.id}>                            
-                          </List>
-            }) }
-          </>) 
-         : '버튼을 눌러 메뉴를 선택해주세요'
-      }
+      <div className="items-center">
+        <button onClick={() => setCurrentPage('Card')}>출결관리</button>
+        <button onClick={() => setCurrentPage('List')}>대시보드</button>
+        <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
+      </div>
+        <div>
+        {
+          currentPage === 'Card' ? 
+            (memberInfoList.map(memberInfo => {
+              return <Card memberInfo={memberInfo} 
+                          updateMemberInfo={updateMemberInfo} 
+                          key={memberInfo.id}>
+                    </Card>
+            })) 
+          : currentPage === 'List' ? 
+            ( <><WeatherBoaard></WeatherBoaard> 
+              
+              {memberInfoList.map(memberInfo => {
+                return <List memberInfo={memberInfo} 
+                              key={memberInfo.id}>                            
+                              </List>
+                }) 
+              }
+            </>) 
+          : currentPage === 'VacationRequest' ? 
+              <VacationRequest></VacationRequest>
+            : '버튼을 눌러 메뉴를 선택해주세요'
+        }
+        </div>
     </div>
   )
 }
