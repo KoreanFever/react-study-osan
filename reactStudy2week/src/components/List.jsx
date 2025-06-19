@@ -13,7 +13,10 @@ function List(props) {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex max-w-full w-full pb-3">
+            {/* className="max-w-sm w-full lg:max-w-full lg:flex pb-3" */}
+            <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            </div>
             <div className={backgroundColor +" w-96 h-24 shadow-md rounded-lg p-4 mb-4"}>
                 <h2 className="text-xl font-bold">{memberInfo.name}</h2>
                 {/* <p className="text-gray-600">부서: {memberInfo.department}</p>
@@ -23,6 +26,8 @@ function List(props) {
                 <p className="text-gray-600">퇴근시간: {memberInfo.checkOutTime}</p> */}
                 <p className="text-gray-600">출근 여부: {memberInfo.isWorking ? "출근" : "퇴근"}</p>
                 <p className="text-gray-600">지각 여부: {memberInfo.isLate ? "지각" : "정상"}</p>
+            </div>
+            <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
             </div>
         </div>
     )

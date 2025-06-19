@@ -49,36 +49,36 @@ function App() {
  
 
   return (
-    <div>
-      <div className="items-center">
+    <div className='flex items-center h-screen flex-col'>
+      <header className='fixed top-0'>
         <button onClick={() => setCurrentPage('Card')}>출결관리</button>
         <button onClick={() => setCurrentPage('List')}>대시보드</button>
         <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
+      </header>
+      <div className='mt-16'>
+      {
+        currentPage === 'Card' ? 
+          (memberInfoList.map(memberInfo => {
+            return <Card memberInfo={memberInfo} 
+                        updateMemberInfo={updateMemberInfo} 
+                        key={memberInfo.id}>
+                  </Card>
+          })) 
+        : currentPage === 'List' ? 
+          ( <><WeatherBoaard></WeatherBoaard> 
+            
+            {memberInfoList.map(memberInfo => {
+              return <List memberInfo={memberInfo} 
+                            key={memberInfo.id}>                            
+                            </List>
+              }) 
+            }
+          </>) 
+        : currentPage === 'VacationRequest' ? 
+            <VacationRequest></VacationRequest>
+          : '버튼을 눌러 메뉴를 선택해주세요'
+      }
       </div>
-        <div>
-        {
-          currentPage === 'Card' ? 
-            (memberInfoList.map(memberInfo => {
-              return <Card memberInfo={memberInfo} 
-                          updateMemberInfo={updateMemberInfo} 
-                          key={memberInfo.id}>
-                    </Card>
-            })) 
-          : currentPage === 'List' ? 
-            ( <><WeatherBoaard></WeatherBoaard> 
-              
-              {memberInfoList.map(memberInfo => {
-                return <List memberInfo={memberInfo} 
-                              key={memberInfo.id}>                            
-                              </List>
-                }) 
-              }
-            </>) 
-          : currentPage === 'VacationRequest' ? 
-              <VacationRequest></VacationRequest>
-            : '버튼을 눌러 메뉴를 선택해주세요'
-        }
-        </div>
     </div>
   )
 }

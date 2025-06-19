@@ -16,7 +16,10 @@ function WeatherBoard(props) {
     }, []);
 
     return (
-            <div className="flex flex-col items-center justify-center">
+        <div className="max-w-sm w-full lg:max-w-full lg:flex pb-3">
+            <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            </div>
+            <div className="flex flex-col items-center justify-center max-w-sm w-full">
                 <div className="bg-white w-96 h-24 shadow-md rounded-lg p-4 mb-4">
                     {weather.description ? (
                         <h2 className="text-xl font-bold">현재 날씨: {weather.description}</h2>
@@ -24,7 +27,12 @@ function WeatherBoard(props) {
                         <h2 className="text-xl font-bold">현재 날씨 정보를 불러오는 중...</h2>
                     )}
                 </div>
+                <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+                </div>
             </div>
+            <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            </div>
+        </div>
     )
 }
 

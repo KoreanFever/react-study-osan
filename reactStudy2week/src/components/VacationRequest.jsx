@@ -41,11 +41,15 @@ function VacationRequest(props) {
     }
 
     return (
-        <div className="object-center pt-7">
-            <table>
+        <div className="flex max-w-full w-full pb-3">
+            <div className="flex w-128 overflow-hidden"></div>
+            <div className="flex w-128 justify-center">
+            <form className="w-full" onSubmit={submitVacationRequest}>
+                <table className="border border-gray-300 w-full table-auto">
+                    <tbody>
                 <tr>
-                    <th scope="row" className="border border-gray-300">시간</th>
-                    <td className="border border-gray-300">
+                            <th scope="row" className="border border-gray-300 w-1/3">시간</th>
+                            <td className="border border-gray-300 w-2/3">
                         {vacationTimeType.map((vacationTime, idx) => {
                             return (
                                 <div className="float-start" key={'vacationTimeType' + idx}>
@@ -63,8 +67,8 @@ function VacationRequest(props) {
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row" className="border border-gray-300">구분</th>
-                    <td className="border border-gray-300">
+                            <th scope="row" className="border border-gray-300 w-1/3">구분</th>
+                            <td className="border border-gray-300 w-2/3">
                         {vacationRangeType.map((vacationRange, idx) => {
                             return (
                                 <div className="float-start" key={'vacationRangeType' + idx}>
