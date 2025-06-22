@@ -75,8 +75,20 @@ function App() {
             }
           </>) 
         : currentPage === 'VacationRequest' ? 
-            <VacationRequest></VacationRequest>
-          : '버튼을 눌러 메뉴를 선택해주세요'
+            <VacationRequest memberInfoList={memberInfoList}
+                            updateMemberInfo={updateMemberInfo} 
+            ></VacationRequest>
+          : <div className="max-w-sm w-full lg:max-w-full lg:flex pb-3">
+              <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+              </div>
+              <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+                버튼을 눌러 메뉴를 선택해주세요
+              </div>
+              <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+              </div>
+            </div>
+              
+                
       }
       </div>
     </div>
