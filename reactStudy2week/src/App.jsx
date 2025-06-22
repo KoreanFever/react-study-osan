@@ -15,6 +15,8 @@ function App() {
       joinDate: "2022-04-19",
       isWorking: false,
       isLate: false,
+      totalVacationDate: 15,
+      vacationInfo: []
     },
     {
       id: 2,
@@ -23,6 +25,8 @@ function App() {
       joinDate: "2012-02-20",
       isWorking: false,
       isLate: false,
+      totalVacationDate: 19,
+      vacationInfo: []
     },
     {
       id:3,
@@ -31,6 +35,8 @@ function App() {
       joinDate: "2010-01-11",
       isWorking: false,
       isLate: false,
+      totalVacationDate: 19,
+      vacationInfo: []
     }
   ])
   const [memberVacationInfo, setMemberVacationInfo] = useState({})

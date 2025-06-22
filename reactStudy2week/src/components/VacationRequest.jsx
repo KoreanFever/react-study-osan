@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
  * @param {*} props 
  */
 function VacationRequest(props) {
+    const memberInfoList = props.memberInfoList
+    const updateMemberInfo = props.updateMemberInfo
     const initParams = {
         vacationTimeType:'',
         vacationRangeType: '',
@@ -54,6 +56,36 @@ function VacationRequest(props) {
     const submitVacationRequest = (event) => {
         event.preventDefault()
         console.log(params)
+        const vacationRequestInfo = params
+        let resultList
+        try{
+            resultList = memberInfoList.filter(memberInfo => {
+                // 유저 정보 리스트에서 매칭되는 유저 정보를 찾아서 총 연차 갯수에서 신청한 연차 갯수만큼 차감
+                if (memberInfo.name === params.vacationUserName) {
+                    switch(params.vacationRangeType) {
+                        case 'quarter': memberInfo.totalVacationDate -= 0.25; break;
+                        case 'half': memberInfo.totalVacationDate -= 0.5; break;
+                        case 'full': memberInfo.totalVacationDate -= 1; break;
+                        default: throw Error('유효한 형식이 아닙니다.')
+                    }
+                    // 연차 신청 정보는 유저 정보에 신규 프로퍼티를 생성하여 리스트 형태로 저장
+                    memberInfo.vacationInfo.push(vacationRequestInfo)
+                    return true
+                }
+                return false
+            })
+        } catch (e) {
+            alert(e.message)
+            return false
+        }
+        if (resultList.length > 0) {
+            memberInfoList.forEach(memberInfo => {
+                updateMemberInfo(memberInfo)
+            })
+            alert('연차 신청이 완료되었습니다.')
+        } else {
+            alert('신청자의 정보가 존재하지 않습니다.')
+        }
     }
 
     return (
@@ -119,7 +151,7 @@ function VacationRequest(props) {
                         </tr>
                         <tr>
                             <td colSpan={2} className="text-center">
-                                <button type="submit" > 신청 </button>
+                                <button type="submit"> 신청 </button>
                             </td>
                         </tr>
                     </tbody>
