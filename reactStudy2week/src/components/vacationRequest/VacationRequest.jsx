@@ -92,71 +92,71 @@ function VacationRequest(props) {
         <div className="flex max-w-full w-full pb-3">
             <div className="flex w-128 overflow-hidden"></div>
             <div className="flex w-128 justify-center">
-            <form className="w-full" onSubmit={submitVacationRequest}>
-                <table className="border border-gray-300 w-full table-auto">
-                    <tbody>
-                        <tr>
-                            <th scope="row" className="border border-gray-300 w-1/3">시간</th>
-                            <td className="border border-gray-300 w-2/3">
-                                {vacationTimeType.map((vacationTime, idx) => {
-                                    return (
-                                        <div className="float-start" key={'vacationTimeType' + idx}>
-                                            <input 
-                                                type="radio" 
-                                                name="vacationTimeType"
-                                                value={vacationTime.value}
-                                                onClick={changeVacationTimeType}
-                                                disabled={disableSelectableVacationTime}
-                                            />
-                                            <label htmlFor={vacationTime.name}>{vacationTime.name}</label>
-                                        </div>
-                                        )
-                                })} 
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" className="border border-gray-300 w-1/3">구분</th>
-                            <td className="border border-gray-300 w-2/3">
-                                {vacationRangeType.map((vacationRange, idx) => {
-                                    return (
-                                        <div className="float-start" key={'vacationRangeType' + idx}>
-                                            <input 
-                                                type="radio" 
-                                                name="vacationRangeType"
-                                                value={vacationRange.value}
-                                                onClick={changeVacationRangeType}
-                                            />
-                                            <label htmlFor={vacationRange.name}>{vacationRange.name}</label>
-                                        </div>
-                                        )
-                                    })}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" className="border border-gray-300 w-1/3">근태 일자</th>
-                            <td className="border border-gray-300 w-2/3">
-                                <input 
-                                    type="date"
-                                    name="vacationDate" 
-                                    onChange={changeVacationDate}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" className="border border-gray-300 w-1/3">신청자명</th>
-                            <td className="border border-gray-300 w-2/3">
-                                <input 
-                                    name="vacationUserName" 
-                                    onChange={changeVacationUserName}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2} className="text-center">
-                                <button type="submit"> 신청 </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                <form className="w-full" onSubmit={submitVacationRequest}>
+                    <table className="border border-gray-300 w-full table-auto">
+                        <tbody>
+                            <tr>
+                                <th scope="row" className="border border-gray-300 w-1/3">시간</th>
+                                <td className="border border-gray-300 w-2/3">
+                                    {vacationTimeType.map((vacationTime, idx) => {
+                                        return (
+                                            <div className="float-start" key={'vacationTimeType' + idx}>
+                                                <input 
+                                                    type="radio" 
+                                                    name="vacationTimeType"
+                                                    value={vacationTime.value}
+                                                    onClick={changeVacationTimeType}
+                                                    disabled={disableSelectableVacationTime}
+                                                />
+                                                <label htmlFor={vacationTime.name}>{vacationTime.name}</label>
+                                            </div>
+                                            )
+                                    })} 
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" className="border border-gray-300 w-1/3">구분</th>
+                                <td className="border border-gray-300 w-2/3">
+                                    {vacationRangeType.map((vacationRange, idx) => {
+                                        return (
+                                            <div className="float-start" key={'vacationRangeType' + idx}>
+                                                <input 
+                                                    type="radio" 
+                                                    name="vacationRangeType"
+                                                    value={vacationRange.value}
+                                                    onClick={changeVacationRangeType}
+                                                />
+                                                <label htmlFor={vacationRange.name}>{vacationRange.name}</label>
+                                            </div>
+                                            )
+                                        })}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" className="border border-gray-300 w-1/3">근태 일자</th>
+                                <td className="border border-gray-300 w-2/3">
+                                    <input 
+                                        type="date"
+                                        name="vacationDate" 
+                                        onChange={changeVacationDate}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" className="border border-gray-300 w-1/3">신청자명</th>
+                                <td className="border border-gray-300 w-2/3">
+                                    <input 
+                                        name="vacationUserName" 
+                                        onChange={changeVacationUserName}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2} className="text-center">
+                                    <button type="submit"> 신청 </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
             <div className="flex w-128 overflow-hidden"></div>
         </div>
