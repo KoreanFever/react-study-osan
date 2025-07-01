@@ -56,9 +56,11 @@ function Card(props) {
     // 출퇴근 시간 포맷팅
     function getCheckedHour(id) {
         const checkedHour = new Date(localStorage.getItem(id))
+        console.log(checkedHour)
+        console.log(checkedHour.getMonth())
         return  checkedHour.getFullYear() + 
                 '-' +  
-                dateElementFormatter(checkedHour.getMonth()) +
+                dateElementFormatter(checkedHour.getMonth() + 1) +
                 '-' + 
                 dateElementFormatter(checkedHour.getDate()) +
                 ' ' +
