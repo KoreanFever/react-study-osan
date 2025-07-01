@@ -119,6 +119,9 @@ function Card(props) {
                             if (key === "diffYears") {
                                 fieldName = "년차"
                             }
+                            if (key === "totalVacationDate") {
+                                fieldName = "잔여 연차 갯수"
+                            }
                             return (
                                 <div key={key + memberInfo.name}>
                                     {
