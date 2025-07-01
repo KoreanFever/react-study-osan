@@ -9,11 +9,17 @@ function App() {
   const [currentPage, setCurrentPage] = useState('')
 
   return (
-    <div className='flex items-center h-screen flex-col'>
-      <header className='fixed top-0'>
-        <button onClick={() => setCurrentPage('List')}>대시보드</button>
-        <button onClick={() => setCurrentPage('Card')}>출결관리</button>
-        <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
+    <div className='flex h-screen flex-col'>
+      <header className='fixed top-0 bg-blue-400 w-full '>
+        <div className='flex'>
+          <div className="flex w-128 overflow-hidden"></div>
+          <div className="flex w-128 overflow-hidden items-center justify-center">
+            <button onClick={() => setCurrentPage('List')}>대시보드</button>
+            <button onClick={() => setCurrentPage('Card')}>출결관리</button>
+            <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
+          </div>
+          <div className="flex w-128 overflow-hidden"></div>
+          </div>
       </header>
 
       <MemberInfoListProvider>
@@ -24,9 +30,6 @@ function App() {
         : currentPage === 'List' ? 
           <DashBoard />
         : currentPage === 'VacationRequest' ? 
-            // <VacationRequest memberInfoList={memberInfoList}
-            //                 updateMemberInfo={updateMemberInfo} 
-            // ></VacationRequest>
             <VacationRequest />
         : <div className="max-w-sm w-full lg:max-w-full lg:flex pb-3">
             <div className="h-48 lg:h-auto w-128 lg:w-128 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
