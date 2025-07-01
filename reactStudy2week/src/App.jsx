@@ -4,63 +4,19 @@ import Card from './components/Card'
 import List from './components/List'
 import WeatherBoaard from './components/WeatherBoard'
 import VacationRequest from './components/VacationRequest'
+import { MemberInfoListProvider } from './context/MemberInfoListContext'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('')
-  const [memberInfoList, setMemberInfoList] = useState( [
-    {
-      id: 1,
-      name: "박상길",
-      department: "인사팀",
-      joinDate: "2022-04-19",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 15,
-      vacationInfo: []
-    },
-    {
-      id: 2,
-      name: "정진호",
-      department: "기획팀",
-      joinDate: "2012-02-20",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    },
-    {
-      id:3,
-      name: "연민수",
-      department: "해외영업팀",
-      joinDate: "2010-01-11",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    }
-  ])
-  const [memberVacationInfo, setMemberVacationInfo] = useState({})
-
-  const updateMemberInfo = (memberInfo) => {
-    memberInfoList.forEach(info => {
-      if (info.id === memberInfo.id) {
-        console.log('info', info)
-        info = memberInfo
-      }
-    })
-    setMemberInfoList(memberInfoList)
-  }
-
-  
- 
 
   return (
     <div className='flex items-center h-screen flex-col'>
       <header className='fixed top-0'>
-        <button onClick={() => setCurrentPage('Card')}>출결관리</button>
         <button onClick={() => setCurrentPage('List')}>대시보드</button>
+        <button onClick={() => setCurrentPage('Card')}>출결관리</button>
         <button onClick={() => setCurrentPage('VacationRequest')}>연차신청</button>
       </header>
+      <MemberInfoListProvider>
       <div className='mt-16'>
       {
         currentPage === 'Card' ? 
@@ -97,6 +53,7 @@ function App() {
                 
       }
       </div>
+      </MemberInfoListProvider>
     </div>
   )
 }
