@@ -1,38 +1,4 @@
-import { createContext, useContext, useState } from "react"
-
-
-export const memberInfoList = [
-    {
-      id: 1,
-      name: "박상길",
-      department: "인사팀",
-      joinDate: "2022-04-19",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 15,
-      vacationInfo: []
-    },
-    {
-      id: 2,
-      name: "정진호",
-      department: "기획팀",
-      joinDate: "2012-02-20",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    },
-    {
-      id:3,
-      name: "연민수",
-      department: "해외영업팀",
-      joinDate: "2010-01-11",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    }
-  ]
+import { createContext, useContext, useEffect, useState } from "react"
 
 const MemberInfoListContext = createContext()
 
@@ -41,38 +7,14 @@ export function useMemberInfoListContext() {
 }
 
 export function MemberInfoListProvider({children}) {
-  const [memberInfoList, setMemberInfoList] = useState([
-    {
-      id: 1,
-      name: "박상길",
-      department: "인사팀",
-      joinDate: "2022-04-19",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 15,
-      vacationInfo: []
-    },
-    {
-      id: 2,
-      name: "정진호",
-      department: "기획팀",
-      joinDate: "2012-02-20",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    },
-    {
-      id:3,
-      name: "연민수",
-      department: "해외영업팀",
-      joinDate: "2010-01-11",
-      isWorking: false,
-      isLate: false,
-      totalVacationDate: 19,
-      vacationInfo: []
-    }
-  ])
+  const [memberInfoList, setMemberInfoList] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:3000/api/v1/init')
+    .then(res => res.json())
+    .then(res => {
+      return setMemberInfoList(res.initialData)
+    })  
+  }, [])
 
   const updateMemberInfo = (memberInfo) => {
     memberInfoList.forEach(info => {
