@@ -52,6 +52,20 @@ function Card(props) {
         setIsWorking(memberInfo.isWorking);
         setIsLate(memberInfo.isLate);
 
+        fetch("http://localhost:3000/api/v1/working-status/" + memberInfo.id, {
+            method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...memberInfo
+            })
+        }).then(res => res.json())
+        .then(res => {
+            alert("처리가 완료되었습니다.")
+        })
+
+
     }
     // 출퇴근 시간 포맷팅
     function getCheckedHour(id) {
