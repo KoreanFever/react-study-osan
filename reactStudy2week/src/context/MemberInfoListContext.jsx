@@ -12,7 +12,19 @@ export function MemberInfoListProvider({children}) {
     fetch('http://localhost:3000/api/v1/init')
     .then(res => res.json())
     .then(res => {
-      return setMemberInfoList(res.initialData)
+      let dataList = res.initialData
+      dataList = dataList.map(data => {
+        data.isLate = data.is_late
+        data.isWorking = data.is_working
+        data.joinDate = data.join_date
+        data.totalVacationDate = data.total_vacation_date
+        data.vacationInfo = data.vacation_info
+        
+        return data
+      })
+      
+      console.log(dataList)
+      return setMemberInfoList(dataList)
     })  
   }, [])
 
